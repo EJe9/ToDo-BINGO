@@ -1,5 +1,23 @@
 @import url('https://cdn.jsdelivr.net/gh/MonadABXY/mona-font/web/mona.css');
 
+html, body {
+  /* 화면을 넘치는 콘텐츠 숨기기 */
+  overflow-x: hidden;
+  /* 터치 동작 시 줌인 방지 및 클릭 지연 제거 */
+  touch-action: manipulation;
+  /* 화면 전체 높이 고정 (모바일 주소창 자동 숨김 방지) */
+  height: 100dvh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+/* 박스들이 화면 밖으로 삐져나가지 않도록 보장 */
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
 textarea{
 width:100%;
 height:100%;
@@ -328,4 +346,11 @@ width:100%;
 height:100%;
 pointer-events:none;
 z-index:999;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3등분하여 화면에 딱 맞게 */
+    width: 100vw;
+  }
 }
