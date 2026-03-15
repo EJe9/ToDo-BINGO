@@ -47,7 +47,11 @@ margin-top:20px;
     grid-template-columns: repeat(3, 1fr); /* 1fr을 사용하여 화면 비율에 맞춰 자동 조절 */
     width: 95%; /* 전체 너비의 95% 사용 */
   }
-  
+  body {
+    transform: scale(0.6); /* 60% 크기로 축소 */
+    transform-origin: top center; /* 위쪽 중앙을 기준으로 축소 */
+    width: 166%; /* 100/0.6 의 비율로 너비를 확장하여 잘림 방지 */
+  }
   .box {
     width: 100%; /* 박스 너비를 유동적으로 */
     aspect-ratio: 1 / 1; /* 가로세로비를 1:1로 유지 */
