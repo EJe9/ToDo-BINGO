@@ -60,6 +60,19 @@ gap:12px;
 margin-top:20px;
 }
 
+@media (max-width: 650px) {
+  .grid {
+    /* 1fr은 '가능한 공간을 나누어 갖는다'는 뜻입니다 */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 8px; /* 간격을 살짝 좁힘 */
+  }
+
+  .box {
+    /* 비율을 유지하기 위해 높이 조절 */
+    height: 100px; 
+  }
+}
+
 button, textarea, input, .box {
   touch-action: manipulation;
 }
@@ -331,21 +344,4 @@ width:100%;
 height:100%;
 pointer-events:none;
 z-index:999;
-}
-
-@media (max-width: 400px) {
-  .grid {
-    grid-template-columns: repeat(3, 80px); /* 아주 작은 폰트에서는 80px로 축소 */
-    grid-template-rows: repeat(3, 80px);
-    gap: 5px;
-  }
-  
-  .box {
-    width: 80px;
-    height: 80px;
-  }
-  
-  textarea {
-    font-size: 12px;
-  }
 }
