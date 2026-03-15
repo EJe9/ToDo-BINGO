@@ -49,10 +49,15 @@ align-items: cener;
 width: 100%;
 max-width: 650%;
 margin: 0 auto;
+padding: 0 20px;
+box-sizing: border-box;
 text-align:center;
 }
 
 h1{
+width: 100%;
+padding: 0 10px;
+withe-space: nowrap;
 font-weight:700;
 letter-spacing:1px;
 margin-bottom:10px;
@@ -62,13 +67,17 @@ margin-bottom:10px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 grid-template-rows:repeat(3,1fr);
-gap:12px;
-width: 90vw;
+gap:10px;
+width: 100%;
 aspect-ratio: 1 / 1;
 margin-top:20px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+  
   .grid {
     /* 1fr은 '가능한 공간을 나누어 갖는다'는 뜻입니다 */
     grid-template-columns: repeat(3, 1fr); 
