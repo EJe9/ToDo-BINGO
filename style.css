@@ -27,7 +27,7 @@ html, body{
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transform-origin: center;
-  transition: transform 0.2s ease;
+  transition: transform 0.1s ease;
 }
 
 .title{
@@ -46,11 +46,13 @@ border:none;
 resize:none;
 outline:none;
 text-align:center;
-font-size:15px;
+font-size:1.1em;
 background:transparent;
 font-family:'Mona12', monospace;
-;
 line-height:1.4;
+word-break: keep-all;
+display: flex;
+align-items: center;
 }
 
 body{
