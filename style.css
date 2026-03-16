@@ -17,6 +17,28 @@ html, body{
   align-items: center;
 }
 
+#scalable-content{
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.title{
+  white-space: nowrap;
+  margin: 0 0 20px 0;
+}
+
+#bingoEffect{
+  font-size: 1.5rem;
+}
+
 textarea{
 width:100%;
 height:100%;
@@ -53,14 +75,16 @@ margin-bottom:10px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-grid-template-rows:repeat(3,1fr);
+grid-template-columns:repeat(3,180px);
+grid-template-rows:repeat(3,180px);
 gap:12px;
 margin-top:20px;
 aspect-ratio: 1 / 1;
 }
 
 .box{
+width: 180px;
+height: 180px;
 background:white;
 border:2px solid #e6e8ec;
 border-radius:14px;
@@ -330,16 +354,8 @@ z-index:999;
 }
 
 @media (max-width: 767px){
-  .container{
-    padding: 10px;
+  #scalable-content{
+    transform: scale(calc(100vw/ 700));
   }
-  .title{
-    font-size: 1.5rem;
-  }
-  .grid{
-    gap: 5px;
-  }
-  textarea{
-    font-size: 14px;
   }
 }
