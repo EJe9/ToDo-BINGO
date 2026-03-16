@@ -12,6 +12,58 @@ const bingoCountLabel = document.getElementById("bingoCount");
 const canvas = document.getElementById("confettiCanvas");
 const ctx = canvas.getContext("2d");
 
+const MAX_CHARS_PER_LINE = 6; // 한 줄에 들어갈 최대 글자 수 (조절 가능)
+
+areas.forEach(area => {
+    area.addEventListener("input", (e) => {
+        let content = area.value;
+        
+        // 1. 자동 줄바꿈 로직 (음보 단위)
+        // 줄바꿈을 제거한 상태에서 단어별로 분리
+        let words = content.replace(/\n/g, "").split(" ");
+        let newContent = "";
+        let currentLineLength = 0;
+
+        for (let i = 0; i < words.length; i++) {
+            if (currentLineLength + words[i].length > MAX_CHARS_PER_LINE) {
+                newContent += "\n" + words[i] + " ";
+                currentLineLength = words[i].length + 1;
+            } else {
+                newContent += words[i] + " ";
+                currentLineLength += words[i].length + 1;
+            }
+        }
+
+        // 입력 중인 내용 업데이트 (커서 위치 유지를 위해 값이 다를 때만 업데이트)
+        if (area.value !== newContent.trimEnd()) {
+            area.value = newContent.trimEnd();
+        }
+
+        // 2. 기존 저장 로직 유지
+        const id = area.dataset.id;
+        localStorage.setItem(`goal_${getFormattedDate()}_${id}`, area.value);
+    });
+});
+
+// 화면 크기에 맞춰 전체 박스를 축소하는 함수 (기존 fitToScreen 활용)
+function fitToScreen() {
+    const content = document.getElementById('scalable-content');
+    const wrapper = document.getElementById('main-wrapper');
+    
+    if (!content || !wrapper) return;
+
+    const scaleX = wrapper.offsetWidth / (content.offsetWidth + 20);
+    const scaleY = wrapper.offsetHeight / (content.offsetHeight + 20);
+    
+    const minScale = Math.min(scaleX, scaleY, 1); 
+    
+    // 박스 자체가 줄어들면 내부 텍스트(em 단위)도 같은 비율로 시각적 축소됨
+    content.style.transform = `scale(${minScale})`;
+}
+
+window.addEventListener('resize', fitToScreen);
+window.addEventListener('load', fitToScreen);
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
