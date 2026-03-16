@@ -15,6 +15,23 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+function autoScale() {
+  const canvas = document.getElementById('bingo-app-canvas');
+  const wrapper = document.getElementById('app-wrapper');
+
+  // 화면 너비와 박스 너비의 비율 계산
+  const scale = Math.min(window.innerWidth / 700, 1); 
+
+  // transform 적용
+  canvas.style.transform = `scale(${scale})`;
+}
+
+// 1. 창 크기 변경 시 실행
+window.addEventListener('resize', autoScale);
+
+// 2. 처음 로딩 시 실행
+window.onload = autoScale;
+
 let currentDate = new Date();
 
 /* 빙고 라인 */
