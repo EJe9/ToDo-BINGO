@@ -60,19 +60,6 @@ gap:12px;
 margin-top:20px;
 }
 
-@media (max-width: 650px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr); /* 1fr을 사용하여 화면 비율에 맞춰 자동 조절 */
-    width: 95%; /* 전체 너비의 95% 사용 */
-  }
-  
-  .box {
-    width: 95%; /* 박스 너비를 유동적으로 */
-    aspect-ratio: 1 / 1; /* 가로세로비를 1:1로 유지 */
-  }
-  .container h1 { font-size: 1.5rem; }
-}
-
 .box{
 background:white;
 border:2px solid #e6e8ec;
