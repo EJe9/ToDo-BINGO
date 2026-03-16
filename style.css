@@ -1,5 +1,23 @@
 @import url('https://cdn.jsdelivr.net/gh/MonadABXY/mona-font/web/mona.css');
 
+#app-wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#bingo-app-canvas{
+  width: 600px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center;
+}
+
 textarea{
 width:100%;
 height:100%;
@@ -7,10 +25,13 @@ border:none;
 resize:none;
 outline:none;
 text-align:center;
-font-size:15px;
+font-size: 1.1rem;
 background:transparent;
 font-family:'Mona12', monospace;
-;
+white-space: pre-wrap;
+word-break: break-all;
+display: flex;
+align-items: center;
 line-height:1.4;
 }
 
@@ -36,10 +57,11 @@ margin-bottom:10px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(3,200px);
-grid-template-rows:repeat(3,200px);
-gap:12px;
+grid-template-columns:repeat(3,160px);
+grid-template-rows:repeat(3,160px);
+gap:15px;
 margin-top:20px;
+margin: 20px 0;
 }
 
 @media (max-width: 650px) {
