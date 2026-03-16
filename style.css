@@ -1,5 +1,23 @@
 @import url('https://cdn.jsdelivr.net/gh/MonadABXY/mona-font/web/mona.css');
 
+#app-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 창을 줄여도 스크롤이 생기지 않게 함 */
+}
+
+/* 박스 자체 설정 */
+#bingo-app-canvas {
+  width: 700px; /* 고정 기준점: 모든 요소의 부모 */
+  transform-origin: center center; /* 중앙을 기준으로 스케일 조정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 textarea{
 width:100%;
 height:100%;
@@ -36,23 +54,12 @@ margin-bottom:10px;
 
 .grid{
 display:grid;
+width: 624px;
+height: 624px;
 grid-template-columns:repeat(3,200px);
 grid-template-rows:repeat(3,200px);
 gap:12px;
 margin-top:20px;
-}
-
-@media (max-width: 650px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr); /* 1fr을 사용하여 화면 비율에 맞춰 자동 조절 */
-    width: 95%; /* 전체 너비의 95% 사용 */
-  }
-  
-  .box {
-    width: 100%; /* 박스 너비를 유동적으로 */
-    aspect-ratio: 1 / 1; /* 가로세로비를 1:1로 유지 */
-  }
-  .container h1 { font-size: 1.5rem; }
 }
 
 .box{
@@ -322,4 +329,13 @@ width:100%;
 height:100%;
 pointer-events:none;
 z-index:999;
+}
+
+@media (max-width: 700px) {
+  #bingo-app-canvas {
+    transform: scale(calc(100vw / 700));
+  }
+  #app-wrapper {
+    height: calc(700px * (100vw / 700)); /* 박스 비율에 맞춰 전체 wrapper 높이 제한 */
+  }
 }
