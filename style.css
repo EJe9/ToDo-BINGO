@@ -354,6 +354,9 @@ z-index:999;
 }
 
 @media (max-width: 767px){
+  textarea{
+    font-size: 0.5rem;
+  }
   #scalable-content{
     transform: scale(calc(100vw/ 700));
   }
