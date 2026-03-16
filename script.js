@@ -32,6 +32,35 @@ const bingoLines = [
 
 let completedBingos = new Set();
 
+function applyResponsiveScale() {
+    const canvas = document.getElementById('bingo-app-canvas');
+    const wrapper = document.getElementById('app-wrapper');
+    
+    // 브라우저 화면의 너비와 높이
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    // 박스의 원래 크기
+    const canvasWidth = canvas.offsetWidth;
+    const canvasHeight = canvas.offsetHeight;
+    
+    // 화면에 맞추기 위한 비율 계산 (여백 5% 제외)
+    const scaleX = (windowWidth * 0.95) / canvasWidth;
+    const scaleY = (windowHeight * 0.95) / canvasHeight;
+    
+    // 둘 중 더 많이 줄여야 하는 비율을 선택하여 가로/세로 모두 안 잘리게 함
+    let finalScale = Math.min(scaleX, scaleY);
+    
+    // 화면이 박스보다 클 때는 원래 크기(1) 유지, 작을 때만 축소
+    if (finalScale > 1) finalScale = 1;
+    
+    canvas.style.transform = `scale(${finalScale})`;
+}
+
+// 초기 로드와 화면 크기 변경 시 실행
+window.addEventListener('resize', applyResponsiveScale);
+window.addEventListener('load', applyResponsiveScale);
+
 /* 날짜 문자열 */
 
 function formatDate(date){
