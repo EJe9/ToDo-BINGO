@@ -16,6 +16,16 @@ const MAX_CHARS_PER_LINE = 6; // 한 줄에 들어갈 최대 글자 수 (조절 
 
 areas.forEach(area => {
     area.addEventListener("input", (e) => {
+        const textLength = area.value.length;
+
+        if (textLength > 15){
+            area.style.fontSize = "0.9em";
+        } else if (textLength > 10){
+            area.style.fontSize = "1.0em";
+        } else {
+            area.style.fontSize = "1.1em";
+        }
+        
         let content = area.value;
         
         // 1. 자동 줄바꿈 로직 (음보 단위)
