@@ -61,6 +61,22 @@ function applyResponsiveScale() {
 window.addEventListener('resize', applyResponsiveScale);
 window.addEventListener('load', applyResponsiveScale);
 
+function fitToScreen() {
+    const canvas = document.getElementById('bingo-app-canvas');
+    const wrapper = document.getElementById('app-wrapper');
+    
+    // 화면 크기와 박스 크기 비율 계산
+    const scaleX = (window.innerWidth - 40) / canvas.offsetWidth; // 좌우 20px씩 여백
+    const scaleY = (window.innerHeight - 40) / canvas.offsetHeight;
+    const finalScale = Math.min(scaleX, scaleY, 1); // 둘 중 작은 비율 적용
+    
+    canvas.style.transform = `scale(${finalScale})`;
+}
+
+// 창 크기가 바뀔 때마다 자동 실행
+window.addEventListener('resize', fitToScreen);
+window.addEventListener('load', fitToScreen);
+
 /* 날짜 문자열 */
 
 function formatDate(date){
