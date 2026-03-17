@@ -82,26 +82,34 @@ const todayKey = formatDate(today);
 
 dateLabel.textContent = (dateKey === todayKey) ? "오늘" : dateKey;
 
-/* 키워드 불러오기 */
+/* 자동 저장 */
 
-mainAreas.forEach(area=>{
+const allAreas = document.querySelectorAll(".goalMain, .goalSub");
 
-const id = area.dataset.id;
+allAreas.forEach(area => {
 
-area.value = localStorage.getItem(`goal_${dateKey}_${id}`) || "";
+  const id = area.dataset.id;
+  const type = area.classList.contains("goalMain") ? "main" : "sub";
+
+  const dateKey = formatDate(currentDate);
+  const storageKey = `goal_${type}_${dateKey}_${id}`;
+
+  /* 불러오기 */
+  area.value = localStorage.getItem(storageKey) || "";
+
+  /* 자동 저장 */
+  area.addEventListener("input", () => {
+
+    const dateKey = formatDate(currentDate);
+
+    localStorage.setItem(
+      `goal_${type}_${dateKey}_${id}`,
+      area.value
+    );
+
+  });
 
 });
-
-/* 설명 불러오기 */
-
-subAreas.forEach(area=>{
-
-const id = area.dataset.sub;
-
-area.value = localStorage.getItem(`goalSub_${dateKey}_${id}`) || "";
-
-});
-
 /* 체크 상태 */
 
 checks.forEach(check=>{
@@ -138,16 +146,18 @@ checkBingo(false);
 
 /* 키워드 저장 */
 
-mainAreas.forEach(area=>{
+const allAreas = document.querySelectorAll(".goalMain, .goalSub");
 
-area.addEventListener("input",()=>{
+allAreas.forEach(area => {
 
-const id = area.dataset.id;
-const dateKey = formatDate(currentDate);
+  const id = area.dataset.id;
+  const type = area.classList.contains("goalMain") ? "main" : "sub";
 
-localStorage.setItem(`goal_${dateKey}_${id}`,area.value);
+  const dateKey = formatDate(currentDate);
 
-});
+  area.value = localStorage.getItem(
+    `goal_${type}_${dateKey}_${id}`
+  ) || "";
 
 });
 
@@ -380,3 +390,16 @@ loadBoard();
 /* 시작 */
 
 loadBoard();
+
+function resizeCanvas(){
+
+  const wrapper = document.getElementById("app-wrapper");
+  const rect = wrapper.getBoundingClientRect();
+
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
